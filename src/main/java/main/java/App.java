@@ -14,5 +14,7 @@ public class App {
         Person person = (Person) context.getBean("person");
         person.speak();
 
+        System.out.println(person);// S.O.P applies toString() to every member variable of person object
+
     }
 }
