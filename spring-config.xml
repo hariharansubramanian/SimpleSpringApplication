@@ -2,10 +2,16 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-    <bean id="person" class="main.java.Person">
-        <constructor-arg value="1" name="id" type="int" ></constructor-arg>
-        <constructor-arg value="hari" name="name" type="java.lang.String"></constructor-arg>
-    </bean>
 
+    <bean id="person" class="main.java.Person">
+        <property name="address" ref="address"/> <!--tells setAddress() setter to refer to address bean for constructor args-->
+        <property name="taxId" value="10"/>
+        <constructor-arg value="1" name="id" type="int"/>
+        <constructor-arg value="hari" name="name" type="java.lang.String"/>
+    </bean>
+    <bean id="address" class="main.java.Address">
+        <constructor-arg name="street" value="indiranagar" type="java.lang.String"/>
+        <constructor-arg name="postcode" value="560008" type="java.lang.String"/>
+    </bean>
 </beans>
 
