@@ -1,17 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-init-method="init"
+       default-destroy-method="destroy"><!-- default init-method init()Runs before init-method of bean onCreate() --><!-- default destroy-method init()Runs after destroy-method of bean onDestroy() -->
 
-    <bean id="person" class="main.java.Person">
-        <property name="address" ref="address"/> <!--tells setAddress() setter to refer to address bean for constructor args-->
+    <bean id="person" class="main.java.Person" scope="prototype" init-method="onCreate" destroy-method="onDestroy"
+          factory-method="getInstance"><!-- Factory-method acts as a constructor, in this case getInstance() is called when new Person is created using <constructor-args> mentioned--><!--Change scope to Prototype if u want different object behaviors--><!--Calls onCreate() after constructor and before setting other properties--><!-- Calls onDestroy() before bean code ends -->
+        <property name="address" ref="address"/>
+        <!--tells setter methods ie in this case setAddress() setter to refer to 'address' bean for constructor args-->
         <property name="taxId" value="10"/>
         <constructor-arg value="1" name="id" type="int"/>
         <constructor-arg value="hari" name="name" type="java.lang.String"/>
     </bean>
+
     <bean id="address" class="main.java.Address">
         <constructor-arg name="street" value="indiranagar" type="java.lang.String"/>
         <constructor-arg name="postcode" value="560008" type="java.lang.String"/>
     </bean>
+
 </beans>
 

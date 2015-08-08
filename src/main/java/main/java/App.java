@@ -1,23 +1,23 @@
 package main.java;
 
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 
-/**
- * Created by Nicky on 8/6/2015.
- */
 public class App {
     public static void main(String[] args) {
 
         ApplicationContext context = new FileSystemXmlApplicationContext("spring-config.xml"); //Creates Spring Bean container to get beans
 
-        Person person = (Person) context.getBean("person");
-        person.speak();
+        Person person1 = (Person) context.getBean("person"); //factory-method gets called using constructor-args, then init-method gets called.
+        Person person2 = (Person) context.getBean("person");//factory-method gets called using constructor--args, then init-method gets called.
 
-        Address address= (Address) context.getBean("address");
+        person1.setTaxId(666);
+
+        Address address = (Address) context.getBean("address");
         System.out.println(address);
 
-        System.out.println(person);// S.O.P applies toString() to every member variable of person object
-
+        System.out.println(person1);
+        System.out.println(person2);
     }
 }

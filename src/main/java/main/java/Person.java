@@ -12,7 +12,21 @@ public class Person {
         this.name = name;
     }
 
-    public void setTaxId(int taxId) {               //Setter Method
+    public static Person getInstance(int id, String name) {    //FACTORY method
+        System.out.println("Factory method called");
+        return new Person(id, name);
+    }
+
+    public void onCreate() {                        //declared as init-method in bean config xml
+        System.out.println("init-method onCreate() called returning object " + this);
+
+    }
+
+    public void onDestroy() {                        //declared as destroy-method in bean config xml
+        System.out.println("Person is Destroyed");
+    }
+
+    public void setTaxId(int taxId) {               //declared in <property> in bean xml
         this.taxId = taxId;
     }
 
@@ -26,11 +40,6 @@ public class Person {
 
     @Override
     public String toString() {
-        return "Person{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", taxId=" + taxId +
-                ", address=" + address +        //prints address object using address.toString()
-                '}';
+        return "Person{" + "id=" + id + ", name='" + name + '\'' + ", taxId=" + taxId + ", address=" + address + '}';
     }
 }
