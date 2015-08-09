@@ -24,4 +24,10 @@ public class Address {
                 ", postcode='" + postcode + '\'' +
                 '}';
     }
+
+    public void setPostcode(String postcode) {
+    }
+
+    public void setStreet(String street) {
+    }
 }
